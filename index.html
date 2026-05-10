@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deekshith Gowda — AI Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--off:#101010;--panel:#141414;--lime:#C5F82A;--white:#F5F5F0;--muted:#666660;--border:rgba(255,255,255,0.06)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+::selection{background:var(--lime);color:var(--black)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:rgba(197,248,42,0.25);border-radius:4px}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.65;overflow-x:hidden;animation:pageFade .6s ease both}
+@keyframes pageFade{from{opacity:0}to{opacity:1}}
+.cur{width:10px;height:10px;background:var(--lime);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:transform .2s}
+.cur-ring{width:38px;height:38px;border:1px solid rgba(197,248,42,0.35);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998}
+body.hov .cur{transform:scale(0)}
+body.hov .cur-ring{width:52px;height:52px;border-color:var(--lime)}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4rem;border-bottom:1px solid transparent;transition:all .35s ease}
+nav.scrolled{background:rgba(8,8,8,0.92);backdrop-filter:blur(20px);border-bottom-color:var(--border);padding:.8rem 4rem}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.08em;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--lime)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;position:relative;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a.active::after,.nav-links a:hover::after{transform:scaleX(1)}
+.nav-hire{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;background:var(--lime);color:var(--black);font-weight:600;padding:.45rem 1.1rem;border-radius:2px;text-decoration:none;transition:all .2s}
+.nav-hire:hover{background:var(--white);transform:translateY(-1px)}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 4rem;gap:4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 50%,rgba(197,248,42,.045) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(to bottom,transparent,var(--black));pointer-events:none}
+.hero-left{position:relative;z-index:1;padding:7rem 0 4rem}
+.hero-tag{display:inline-flex;align-items:center;gap:.6rem;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:1.5rem;animation:fadeUp .8s ease both}
+.hero-dot{width:6px;height:6px;background:var(--lime);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,9vw,9.5rem);line-height:.88;letter-spacing:.02em;white-space:nowrap;animation:fadeUp .8s .08s ease both}
+.hero-name .accent{color:var(--lime)}
+.hero-roles{display:flex;align-items:center;gap:.75rem;margin:1.4rem 0 1.6rem;animation:fadeUp .8s .16s ease both}
+.hero-roles span{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hero-roles .sep{width:4px;height:4px;background:var(--lime);border-radius:50%}
+.hero-desc{font-size:.9rem;color:rgba(245,245,240,.55);line-height:1.85;max-width:400px;margin-bottom:2rem;animation:fadeUp .8s .22s ease both}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;animation:fadeUp .8s .3s ease both}
+.btn-lime{background:var(--lime);color:var(--black);padding:.75rem 1.8rem;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .2s;display:inline-block}
+.btn-lime:hover{background:var(--white);transform:translateY(-3px);box-shadow:0 10px 30px rgba(197,248,42,.25)}
+.btn-ghost{background:transparent;color:var(--white);padding:.75rem 1.8rem;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,.15);border-radius:2px;transition:all .2s;display:inline-block}
+.btn-ghost:hover{border-color:rgba(197,248,42,.6);color:var(--lime);transform:translateY(-3px)}
+.hero-stats{display:flex;align-items:center;gap:1.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border);animation:fadeUp .8s .38s ease both}
+.hstat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;line-height:1;color:var(--lime);transition:text-shadow .3s}
+.hstat:hover .hstat-num{text-shadow:0 0 20px rgba(197,248,42,.5)}
+.hstat-lbl{font-size:.6rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:.2rem}
+.hstat-div{width:1px;height:32px;background:var(--border)}
+.hero-right{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;padding:7rem 0 4rem}
+.code-block{background:#0c0c0c;border:1px solid rgba(197,248,42,.12);border-radius:8px;overflow:hidden;width:100%;max-width:440px;box-shadow:0 0 80px rgba(197,248,42,.05),0 40px 80px rgba(0,0,0,.6);animation:fadeUp .8s .3s ease both;transition:all .35s}
+.code-block:hover{transform:translateY(-8px);border-color:rgba(197,248,42,.22);box-shadow:0 0 100px rgba(197,248,42,.1),0 60px 120px rgba(0,0,0,.7)}
+.code-bar{background:#161616;border-bottom:1px solid rgba(255,255,255,.04);padding:.65rem 1rem;display:flex;align-items:center;gap:.4rem}
+.dot-r{width:10px;height:10px;border-radius:50%;background:#ff5f57}
+.dot-y{width:10px;height:10px;border-radius:50%;background:#febc2e}
+.dot-g{width:10px;height:10px;border-radius:50%;background:#28c840}
+.code-filename{margin-left:.5rem;font-family:monospace;font-size:.68rem;color:#444}
+.code-body{padding:1.4rem 1.5rem;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.95;color:rgba(245,245,240,.72);white-space:pre}
+.ck{color:#c792ea}.cs{color:#c3e88d}.cn{color:#f78c6c}.cc{color:rgba(197,248,42,.45)}.cf{color:#82aaff}
+.strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--off);overflow:hidden;padding:.75rem 0;mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%)}
+.strip-track{display:inline-flex;animation:marquee 26s linear infinite;white-space:nowrap}
+.strip-item{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.14em;color:#444;padding:0 2rem;display:inline-flex;align-items:center;gap:2rem}
+.strip-dot{color:var(--lime);font-size:1.1rem;line-height:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+section{padding:5rem 4rem;position:relative}
+.sec-inner{max-width:1100px;margin:0 auto}
+.sec-eye{display:flex;align-items:center;gap:.75rem;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:1.2rem}
+.sec-eye::before{content:'';width:20px;height:1px;background:var(--lime)}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,4vw,4.5rem);line-height:.92;letter-spacing:.03em;margin-bottom:2rem}
+.sec-title .accent{color:var(--lime)}
+.edu-section{background:linear-gradient(to bottom,var(--black),var(--off))}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}
+.edu-card{position:relative;display:flex;flex-direction:column;gap:1.5rem;background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:2.2rem;transition:all .35s}
+.edu-card:hover{border-color:rgba(197,248,42,.2);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.edu-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--lime);border-radius:2px 0 0 2px;transform:scaleY(0);transform-origin:bottom;transition:transform .5s .2s}
+.edu-card.vis::before{transform:scaleY(1)}
+.edu-degree{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.04em;color:var(--white);margin-bottom:.3rem}
+.edu-field{color:var(--lime);font-size:.82rem;margin-bottom:.3rem}
+.edu-uni{color:var(--muted);font-size:.76rem}
+.edu-meta{display:flex;align-items:center;justify-content:space-between;padding-top:1.2rem;border-top:1px solid var(--border)}
+.edu-cgpa{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;color:var(--lime)}
+.edu-cgpa span{font-family:'DM Sans',sans-serif;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-left:.3rem}
+.edu-badge{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);background:rgba(197,248,42,.07);border:1px solid rgba(197,248,42,.15);padding:.3rem .8rem;border-radius:100px}
+.edu-year{font-size:.72rem;color:var(--muted);letter-spacing:.06em}
+.interest-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.itag{background:transparent;border:1px solid var(--border);color:rgba(245,245,240,.5);font-size:.7rem;padding:.35rem 1rem;border-radius:100px;cursor:default;transition:all .2s}
+.itag:hover{border-color:rgba(197,248,42,.3);color:var(--lime);transform:translateY(-2px)}
+.sgpa-card{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1.8rem;transition:all .35s}
+.sgpa-card:hover{border-color:rgba(197,248,42,.15)}
+.sgpa-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem}
+.sgpa-label{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);margin-bottom:.2rem}
+.sgpa-sub{font-size:.7rem;color:var(--muted)}
+.sgpa-best{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--lime);line-height:1;text-align:right}
+.sgpa-best span{font-family:'DM Sans',sans-serif;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block;margin-top:.1rem}
+.bars{display:flex;align-items:flex-end;gap:.75rem;height:110px;margin-bottom:.75rem}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:.5rem;height:100%}
+.bar-val{font-size:.58rem;font-weight:700;color:transparent;transition:color .2s;text-align:center}
+.bar-wrap:hover .bar-val{color:rgba(245,245,240,.7)}
+.bar-wrap.best .bar-val{color:var(--lime)}
+.bar-outer{width:100%;flex:1;display:flex;align-items:flex-end}
+.bar{width:100%;border-radius:2px 2px 0 0;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.04);transform:scaleY(0);transform-origin:bottom;transition:transform .6s cubic-bezier(.25,.46,.45,.94),background .25s,border-color .25s}
+.bar.go{transform:scaleY(1)}
+.bar-wrap.best .bar{background:rgba(197,248,42,.13);border-color:rgba(197,248,42,.35);animation:barPulse 2.5s ease-in-out infinite}
+@keyframes barPulse{0%,100%{background:rgba(197,248,42,.13)}50%{background:rgba(197,248,42,.22)}}
+.bar-wrap:hover .bar{background:rgba(197,248,42,.08);border-color:rgba(197,248,42,.25)}
+.bar-wrap.best:hover .bar{background:rgba(197,248,42,.28)}
+.bar-sem{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center}
+.bar-wrap.best .bar-sem{color:var(--lime)}
+.sgpa-trend{display:flex;align-items:center;gap:.5rem;padding-top:1rem;border-top:1px solid var(--border)}
+.trend-arrow{color:var(--lime)}
+.sgpa-trend p{font-size:.68rem;color:var(--muted)}
+.sgpa-trend strong{color:var(--lime)}
+.about-section{background:linear-gradient(to bottom,var(--off),var(--black))}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{color:rgba(245,245,240,.55);font-size:.88rem;line-height:1.9;margin-bottom:1rem}
+.about-email{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.2rem;color:rgba(245,245,240,.65);text-decoration:none;font-size:.82rem;padding:.7rem 1.1rem;border:1px solid var(--border);border-radius:2px;transition:all .25s}
+.about-email:hover{border-color:rgba(197,248,42,.3);color:var(--lime);transform:translateX(4px)}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.skill-group{background:var(--off);padding:1.4rem}
+.skill-group h4{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.1em;color:var(--lime);border-bottom:1px solid var(--border);padding-bottom:.6rem;margin-bottom:.9rem}
+.stags{display:flex;flex-wrap:wrap;gap:.4rem}
+.stag{background:rgba(255,255,255,.03);border:1px solid var(--border);color:rgba(245,245,240,.55);font-size:.67rem;padding:.25rem .6rem;border-radius:2px;cursor:default;transition:all .2s}
+.stag:hover{background:rgba(197,248,42,.07);border-color:rgba(197,248,42,.2);color:var(--lime);transform:translateY(-2px)}
+.projects-section{background:linear-gradient(to bottom,var(--black),var(--off))}
+.projects-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem}
+.view-all{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);text-decoration:none;transition:letter-spacing .2s}
+.view-all:hover{letter-spacing:.15em}
+.proj-featured{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:1.2rem;transition:all .35s}
+.proj-featured:hover{border-color:rgba(197,248,42,.22);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.proj-featured-left{background:var(--panel);padding:2.5rem;display:flex;flex-direction:column}
+.proj-featured-right{background:var(--black);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:280px}
+.proj-big{font-family:'Bebas Neue',sans-serif;font-size:8rem;color:rgba(197,248,42,.04);letter-spacing:-.02em;user-select:none}
+.proj-live{position:absolute;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.1em;color:var(--lime);border:2px solid var(--lime);padding:.5rem 1.3rem;border-radius:2px;transition:all .25s}
+.proj-featured:hover .proj-live{box-shadow:0 0 30px rgba(197,248,42,.25)}
+.proj-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;color:rgba(255,255,255,.04);letter-spacing:-.02em;margin-bottom:-.5rem}
+.proj-badge{display:inline-flex;align-items:center;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .8rem;border-radius:100px;margin-bottom:1rem;width:fit-content}
+.badge-f{background:rgba(197,248,42,.1);border:1px solid rgba(197,248,42,.25);color:var(--lime)}
+.badge-l{background:rgba(197,248,42,.1);border:1px solid rgba(197,248,42,.25);color:var(--lime)}
+.badge-i{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted)}
+.proj-title{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.04em;color:var(--white);margin-bottom:.75rem;line-height:1}
+.proj-desc{color:rgba(245,245,240,.5);font-size:.82rem;line-height:1.8;margin-bottom:1.5rem;flex:1}
+.proj-stack{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem}
+.ptag{font-size:.65rem;background:rgba(197,248,42,.05);border:1px solid rgba(197,248,42,.12);color:rgba(197,248,42,.65);padding:.2rem .6rem;border-radius:2px}
+.proj-links{display:flex;gap:1.2rem}
+.proj-link{color:var(--muted);text-decoration:none;font-size:.72rem;display:flex;align-items:center;gap:.4rem;letter-spacing:.05em;text-transform:uppercase;transition:all .18s}
+.proj-link:hover{color:var(--lime);transform:translateX(2px)}
+.proj-link svg{width:11px;height:11px;flex-shrink:0}
+.proj-row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.proj-card{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:2rem;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:all .35s}
+.proj-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.proj-card:hover{transform:translateY(-6px);border-color:rgba(197,248,42,.18);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.proj-card:hover::after{transform:scaleX(1)}
+.certs-section{background:linear-gradient(to bottom,var(--off),var(--black))}
+.certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.cert-card{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1.8rem;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:all .32s}
+.cert-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(197,248,42,.04),transparent);opacity:0;transition:opacity .3s}
+.cert-card:hover{transform:translateY(-5px);border-color:rgba(197,248,42,.2);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.cert-card:hover::before{opacity:1}
+.cert-icon{width:44px;height:44px;background:rgba(197,248,42,.05);border:1px solid rgba(197,248,42,.1);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.2rem;transition:all .25s}
+.cert-card:hover .cert-icon{background:rgba(197,248,42,.1);border-color:rgba(197,248,42,.25);transform:scale(1.08)}
+.cert-title{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.04em;line-height:1.2;color:var(--white);margin-bottom:.5rem;transition:color .2s;flex:1}
+.cert-card:hover .cert-title{color:var(--lime)}
+.cert-issuer{color:var(--muted);font-size:.74rem;margin-bottom:.9rem}
+.cert-date{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);background:rgba(197,248,42,.07);border:1px solid rgba(197,248,42,.1);padding:.25rem .75rem;border-radius:100px}
+.contact-section{background:linear-gradient(to bottom,var(--black),var(--off))}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,5.5rem);line-height:.9;letter-spacing:.02em;margin-bottom:1rem}
+.contact-intro{color:rgba(245,245,240,.5);font-size:.88rem;line-height:1.85;margin-bottom:2rem;max-width:380px}
+.contact-items{display:flex;flex-direction:column;gap:.65rem}
+.contact-item{display:flex;align-items:center;gap:.9rem;color:rgba(245,245,240,.6);text-decoration:none;padding:.9rem 1rem;border:1px solid var(--border);border-radius:2px;background:var(--panel);font-size:.82rem;transition:all .25s}
+.contact-item:hover{border-color:rgba(197,248,42,.25);background:#161616;color:var(--white);transform:translateX(8px)}
+.ci-icon{width:38px;height:38px;flex-shrink:0;background:rgba(197,248,42,.05);border:1px solid rgba(197,248,42,.1);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all .2s}
+.contact-item:hover .ci-icon{background:var(--lime);transform:scale(1.05)}
+.contact-form{display:flex;flex-direction:column;gap:.9rem}
+.fg{display:flex;flex-direction:column;gap:.4rem}
+.fg label{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.fg input,.fg textarea{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:2px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.88rem;padding:.75rem .9rem;outline:none;resize:none;transition:border-color .2s}
+.fg input:focus,.fg textarea:focus{border-color:rgba(197,248,42,.35)}
+.fg input::placeholder,.fg textarea::placeholder{color:#333}
+.form-btn{margin-top:.3rem;background:var(--lime);color:var(--black);border:none;padding:.9rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s}
+.form-btn:hover{background:var(--white);transform:translateY(-3px);box-shadow:0 10px 30px rgba(197,248,42,.25)}
+.form-success{display:none;background:rgba(197,248,42,.07);border:1px solid rgba(197,248,42,.2);color:var(--lime);padding:.8rem;border-radius:2px;text-align:center;font-size:.82rem;animation:fadeUp .3s ease both}
+footer{border-top:1px solid var(--border);padding:1.8rem 4rem;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
+.footer-bg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,7rem);color:rgba(255,255,255,.018);white-space:nowrap;pointer-events:none;letter-spacing:.04em;user-select:none}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.08em;color:var(--white);text-decoration:none;position:relative;z-index:1}
+.footer-logo span{color:var(--lime)}
+footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
+.footer-links{display:flex;gap:1.5rem;position:relative;z-index:1}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;transition:all .18s;display:inline-block}
+.footer-links a:hover{color:var(--lime);transform:translateY(-2px)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .65s cubic-bezier(.25,.46,.45,.94),transform .65s cubic-bezier(.25,.46,.45,.94)}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.08s}
+.reveal-d2{transition-delay:.16s}
+.reveal-d3{transition-delay:.24s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  section{padding:4rem 1.5rem}
+  .hero{grid-template-columns:1fr;padding:5rem 1.5rem 3rem;min-height:auto}
+  .hero-right{display:none}
+  .hero-name{font-size:clamp(4rem,15vw,6rem)}
+  .edu-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .proj-featured{grid-template-columns:1fr}
+  .proj-featured-right{display:none}
+  .proj-row,.certs-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:1.5rem}
+}
+
+  /* SEM ROWS */
+  .sem-rows{display:flex;flex-direction:column;gap:.6rem}
+  .sem-row{display:grid;grid-template-columns:110px 1fr;gap:.75rem;align-items:center;padding:.7rem .8rem;border-radius:3px;border:1px solid transparent;transition:all .25s;opacity:0;transform:translateX(-12px)}
+  .sem-row.go{opacity:1;transform:translateX(0)}
+  .sem-row:hover{background:rgba(255,255,255,.02);border-color:var(--border)}
+  .best-row{background:rgba(197,248,42,.03);border-color:rgba(197,248,42,.1) !important}
+  .best-row:hover{background:rgba(197,248,42,.05) !important}
+  .sem-info{display:flex;flex-direction:column;gap:.2rem}
+  .sem-name{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.06em;color:var(--white)}
+  .best-row .sem-name{color:var(--lime)}
+  .sem-session{font-size:.6rem;color:var(--muted);letter-spacing:.04em}
+  .sem-bars-col{display:flex;flex-direction:column;gap:.35rem}
+  .sem-bar-wrap{display:flex;align-items:center;gap:.5rem}
+  .sem-bar-label{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:32px;flex-shrink:0}
+  .cgpa-lbl{color:rgba(197,248,42,.4)}
+  .sem-bar-track{flex:1;height:6px;background:rgba(255,255,255,.05);border-radius:100px;overflow:hidden}
+  .sem-bar{height:100%;border-radius:100px;width:0;transition:width .7s cubic-bezier(.25,.46,.45,.94)}
+  .sem-row.go .sgpa-bar{}
+  .sem-row.go .cgpa-bar{}
+  .sgpa-bar{background:rgba(255,255,255,.18)}
+  .best-bar{background:var(--lime);box-shadow:0 0 10px rgba(197,248,42,.4)}
+  .cgpa-bar{background:rgba(197,248,42,.25)}
+  .sem-bar-val{font-family:'Bebas Neue',sans-serif;font-size:.85rem;color:var(--muted);width:32px;text-align:right;flex-shrink:0}
+  .cgpa-val{color:rgba(197,248,42,.6)}
+  .best-val{color:var(--lime)}
+  .cgpa-row{opacity:.7}
+
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">DG<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#education">Education</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-hire">Hire me</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag"><span class="hero-dot"></span>Available · AI Developer · Bengaluru</div>
+    <h1 class="hero-name">DEEKSHITH<br><span class="accent">GOWDA</span></h1>
+    <div class="hero-roles">
+      <span>AI Developer</span><span class="sep"></span>
+      <span>Product Builder</span><span class="sep"></span>
+      <span>CSE · 3rd Year</span>
+    </div>
+    <p class="hero-desc">Computer Science student at Dayananda Sagar University building real AI products — from RAG systems to IoT. Every project I build is live and public.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-lime">View Projects</a>
+      <a href="#contact" class="btn-ghost">Get in touch →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">2+</div><div class="hstat-lbl">Live Projects</div></div>
+      <div class="hstat-div"></div>
+      <div class="hstat"><div class="hstat-num">7.36</div><div class="hstat-lbl">CGPA</div></div>
+      <div class="hstat-div"></div>
+      <div class="hstat"><div class="hstat-num">5</div><div class="hstat-lbl">Certs & Awards</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="code-block">
+      <div class="code-bar">
+        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+        <span class="code-filename">rag_pipeline.py</span>
+      </div>
+      <div class="code-body"><span class="ck">from</span> langchain_groq <span class="ck">import</span> ChatGroq
+<span class="ck">from</span> langchain_community.vectorstores <span class="ck">import</span> FAISS
+
+<span class="cc"># Build RAG chain</span>
+llm = ChatGroq(
+  model=<span class="cs">"llama-3.3-70b-versatile"</span>,
+  temperature=<span class="cn">0.2</span>
+)
+
+chain = retriever | prompt | llm
+answer = chain.<span class="cf">invoke</span>(question)
+<span class="cc"># → deployed &amp; live ✓</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <span class="strip-item">Python <span class="strip-dot">·</span></span>
+    <span class="strip-item">Generative AI <span class="strip-dot">·</span></span>
+    <span class="strip-item">LangChain <span class="strip-dot">·</span></span>
+    <span class="strip-item">Deep Learning <span class="strip-dot">·</span></span>
+    <span class="strip-item">Node.js <span class="strip-dot">·</span></span>
+    <span class="strip-item">IoT Systems <span class="strip-dot">·</span></span>
+    <span class="strip-item">Cybersecurity <span class="strip-dot">·</span></span>
+    <span class="strip-item">Product Development <span class="strip-dot">·</span></span>
+    <span class="strip-item">Google AI Studio <span class="strip-dot">·</span></span>
+    <span class="strip-item">C · Java · JavaScript <span class="strip-dot">·</span></span>
+    <span class="strip-item">Python <span class="strip-dot">·</span></span>
+    <span class="strip-item">Generative AI <span class="strip-dot">·</span></span>
+    <span class="strip-item">LangChain <span class="strip-dot">·</span></span>
+    <span class="strip-item">Deep Learning <span class="strip-dot">·</span></span>
+    <span class="strip-item">Node.js <span class="strip-dot">·</span></span>
+    <span class="strip-item">IoT Systems <span class="strip-dot">·</span></span>
+    <span class="strip-item">Cybersecurity <span class="strip-dot">·</span></span>
+    <span class="strip-item">Product Development <span class="strip-dot">·</span></span>
+    <span class="strip-item">Google AI Studio <span class="strip-dot">·</span></span>
+    <span class="strip-item">C · Java · JavaScript <span class="strip-dot">·</span></span>
+  </div>
+</div>
+
+<section id="education" class="edu-section">
+  <div class="sec-inner">
+    <div class="sec-eye reveal">Background</div>
+    <div class="edu-grid">
+      <div>
+        <div class="edu-card reveal reveal-d1" id="eduCard">
+          <div>
+            <div class="edu-degree">Bachelor of Technology</div>
+            <div class="edu-field">Computer Science &amp; Engineering</div>
+            <div class="edu-uni">Dayananda Sagar University · Bengaluru, India</div>
+          </div>
+          <div class="edu-meta">
+            <div>
+              <div class="edu-cgpa">7.36 <span>CGPA</span></div>
+              <div class="edu-year" style="margin-top:.4rem">2023 – 2027</div>
+            </div>
+            <div class="edu-badge">3rd Year</div>
+          </div>
+        </div>
+        <div class="interest-tags reveal reveal-d2">
+          <span class="itag">Artificial Intelligence</span>
+          <span class="itag">Deep Learning</span>
+          <span class="itag">Generative AI</span>
+          <span class="itag">Cybersecurity</span>
+          <span class="itag">Product Development</span>
+          <span class="itag">Tech Entrepreneurship</span>
+        </div>
+      </div>
+      <div class="sgpa-card reveal reveal-d1" id="sgpaCard">
+        <!-- Header -->
+        <div class="sgpa-header">
+          <div>
+            <div class="sgpa-label">Academic Performance</div>
+            <div class="sgpa-sub">SGPA &amp; CGPA · All Semesters</div>
+          </div>
+          <div class="sgpa-best">↑ 8.26<span>Best SGPA</span></div>
+        </div>
+
+        <!-- Semester rows -->
+        <div class="sem-rows" id="bars">
+          <div class="sem-row" data-d="80">
+            <div class="sem-info">
+              <span class="sem-name">Sem 1</span>
+              <span class="sem-session">Sep 2023 – Feb 2024</span>
+            </div>
+            <div class="sem-bars-col">
+              <div class="sem-bar-wrap">
+                <span class="sem-bar-label">SGPA</span>
+                <div class="sem-bar-track">
+                  <div class="sem-bar sgpa-bar" style="width:72%"></div>
+                </div>
+                <span class="sem-bar-val">7.20</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sem-row" data-d="160">
+            <div class="sem-info">
+              <span class="sem-name">Sem 2</span>
+              <span class="sem-session">Feb – Jul 2024</span>
+            </div>
+            <div class="sem-bars-col">
+              <div class="sem-bar-wrap">
+                <span class="sem-bar-label">SGPA</span>
+                <div class="sem-bar-track">
+                  <div class="sem-bar sgpa-bar" style="width:71%"></div>
+                </div>
+                <span class="sem-bar-val">7.10</span>
+              </div>
+              <div class="sem-bar-wrap cgpa-row">
+                <span class="sem-bar-label cgpa-lbl">CGPA</span>
+                <div class="sem-bar-track">
+                  <div class="sem-bar cgpa-bar" style="width:71.5%"></div>
+                </div>
+                <span class="sem-bar-val cgpa-val">7.15</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sem-row" data-d="240">
+            <div class="sem-info">
+              <span class="sem-name">Sem 3</span>
+              <span class="sem-session">Aug 2024 – Jan 2025</span>
+            </div>
+            <div class="sem-bars-col">
+              <div class="sem-bar-wrap">
+                <span class="sem-bar-label">SGPA</span>
+                <div class="sem-bar-track">
+                  <div class="sem-bar sgpa-bar" style="width:68.2%"></div>
+                </div>
+                <span class="sem-bar-val">6.82</span>
+              </div>
+              <div class="sem-bar-wrap cgpa-row">
+                <span class="sem-bar-label cgpa-lbl">CGPA</span>
+                <div class="sem-bar-track">
+                  <div class="sem-bar cgpa-bar" style="width:70.3%"></div>
+                </div>
+                <span class="sem-bar-val cgpa-val">7.03</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sem-row" data-d="320">
+            <div class="sem-info">
+              <span class="sem-name">Sem 4</span>
+              <span class="sem-session">Feb – Jun 2025</span>
+            </div>
+            <div class="sem-bars-col">
+              <div class="sem-bar-wrap">
+                <span class="sem-bar-label">SGPA</span>
+                <div class="sem-bar-track">
+                  <div class="sem-bar sgpa-bar" style="width:73.3%"></div>
+                </div>
+                <span class="sem-bar-val">7.33</span>
+              </div>
+              <div class="sem-bar-wrap cgpa-row">
+                <span class="sem-bar-label cgpa-lbl">CGPA</span>
+                <div class="sem-bar-track">
+                  <div class="sem-bar cgpa-bar" style="width:71.1%"></div>
+                </div>
+                <span class="sem-bar-val cgpa-val">7.11</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sem-row best-row" data-d="400">
+            <div class="sem-info">
+              <span class="sem-name">Sem 5 ★</span>
+              <span class="sem-session">Jul – Dec 2025</span>
+            </div>
+            <div class="sem-bars-col">
+              <div class="sem-bar-wrap">
+                <span class="sem-bar-label">SGPA</span>
+                <div class="sem-bar-track">
+                  <div class="sem-bar sgpa-bar best-bar" style="width:82.6%"></div>
+                </div>
+                <span class="sem-bar-val best-val">8.26</span>
+              </div>
+              <div class="sem-bar-wrap cgpa-row">
+                <span class="sem-bar-label cgpa-lbl">CGPA</span>
+                <div class="sem-bar-track">
+                  <div class="sem-bar cgpa-bar" style="width:73.6%"></div>
+                </div>
+                <span class="sem-bar-val cgpa-val">7.36</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sgpa-trend" style="margin-top:1rem">
+          <span class="trend-arrow">↗</span>
+          <p>SGPA jumped from <strong>6.82 → 8.26</strong> — best semester in Sem 5. CGPA steady at <strong>7.36</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about-section">
+  <div class="sec-inner">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="sec-eye">About me</div>
+        <h2 class="sec-title">BUILDING AI<br>THAT <span class="accent">SHIPS.</span></h2>
+        <div class="about-text">
+          <p>I'm a 3rd year Computer Science student at Dayananda Sagar University, Bengaluru (CGPA: 7.36), with a focus on Artificial Intelligence, Generative AI, and product development.</p>
+          <p>I build across the full stack — Python, JavaScript, Node.js, C, Java — and work with LLM APIs, vector databases, IoT systems, and deployed web apps. Everything I build ships to production.</p>
+          <p>My interests span AI, deep learning, cybersecurity fundamentals, and technology-driven entrepreneurship. I want to build tools that solve real problems — not just notebook demos.</p>
+          <a href="mailto:gdeekshith80@gmail.com" class="about-email">✉ gdeekshith80@gmail.com</a>
+        </div>
+      </div>
+      <div class="reveal reveal-d1">
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h4>AI &amp; ML</h4>
+            <div class="stags"><span class="stag">ML Fundamentals</span><span class="stag">Deep Learning</span><span class="stag">Generative AI</span><span class="stag">RAG</span><span class="stag">LLMs</span><span class="stag">LangChain</span><span class="stag">FAISS</span></div>
+          </div>
+          <div class="skill-group">
+            <h4>Programming</h4>
+            <div class="stags"><span class="stag">Python</span><span class="stag">C</span><span class="stag">Java</span><span class="stag">JavaScript</span></div>
+          </div>
+          <div class="skill-group">
+            <h4>Web Technologies</h4>
+            <div class="stags"><span class="stag">HTML</span><span class="stag">CSS</span><span class="stag">JavaScript</span><span class="stag">Node.js</span></div>
+          </div>
+          <div class="skill-group">
+            <h4>Tools &amp; Platforms</h4>
+            <div class="stags"><span class="stag">Google AI Studio</span><span class="stag">VS Code</span><span class="stag">Claude</span><span class="stag">Git</span><span class="stag">GitHub</span><span class="stag">OpenAI Tools</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="projects-section">
+  <div class="sec-inner">
+    <div class="projects-header reveal">
+      <div>
+        <div class="sec-eye">Work</div>
+        <h2 class="sec-title" style="margin-bottom:0">PROJECTS</h2>
+      </div>
+      <a href="https://github.com/deekshith-8" target="_blank" class="view-all">View all on GitHub →</a>
+    </div>
+    <div class="proj-featured reveal">
+      <div class="proj-featured-left">
+        <div class="proj-num">01</div>
+        <div class="proj-badge badge-f">★ Featured · Live</div>
+        <div class="proj-title">DOCMIND AI</div>
+        <p class="proj-desc">End-to-end RAG pipeline that answers natural language questions over uploaded PDFs. Semantic chunking, FAISS vector search, and LLaMA 3.3 (70B) via Groq for sub-second inference.</p>
+        <div class="proj-stack"><span class="ptag">Python</span><span class="ptag">LangChain</span><span class="ptag">FAISS</span><span class="ptag">Groq</span><span class="ptag">Streamlit</span><span class="ptag">HuggingFace</span></div>
+        <div class="proj-links">
+          <a href="https://github.com/deekshith-8/docmind-ai" target="_blank" class="proj-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
+          <a href="https://rag-doc-app-npgrcgrsgye3ugbbwdyuep.streamlit.app/" target="_blank" class="proj-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Live Demo ↗</a>
+        </div>
+      </div>
+      <div class="proj-featured-right">
+        <div class="proj-big">AI</div>
+        <div class="proj-live">LIVE ↗</div>
+      </div>
+    </div>
+    <div class="proj-row">
+      <div class="proj-card reveal reveal-d1">
+        <div class="proj-num">02</div>
+        <div class="proj-badge badge-l">Live</div>
+        <div class="proj-title">AI RESUME ANALYZER</div>
+        <p class="proj-desc">AI-powered resume screening that analyzes resumes against job descriptions. Generates match scores, missing skills, and improvement suggestions using LLaMA 3.3.</p>
+        <div class="proj-stack"><span class="ptag">Node.js</span><span class="ptag">Express</span><span class="ptag">Groq</span><span class="ptag">JavaScript</span><span class="ptag">Vercel</span><span class="ptag">Render</span></div>
+        <div class="proj-links" style="margin-top:auto">
+          <a href="https://github.com/deekshith-8/Resume-Analyzer" target="_blank" class="proj-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
+          <a href="https://resume-analyzer-ashy-seven.vercel.app" target="_blank" class="proj-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Live Demo ↗</a>
+        </div>
+      </div>
+      <div class="proj-card reveal reveal-d2">
+        <div class="proj-num">03</div>
+        <div class="proj-badge badge-i">IoT</div>
+        <div class="proj-title">SMART BUS RFID SYSTEM</div>
+        <p class="proj-desc">RFID-based smart bus tracking and access control. Integrated hardware with software logic for real-time passenger detection and automated bus entry management.</p>
+        <div class="proj-stack"><span class="ptag">IoT</span><span class="ptag">RFID</span><span class="ptag">Embedded C</span></div>
+        <div class="proj-links" style="margin-top:auto">
+          <a href="https://github.com/deekshith-8/smart-bus-rfid-system" target="_blank" class="proj-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs" class="certs-section">
+  <div class="sec-inner">
+    <div class="sec-eye reveal">Credentials</div>
+    <h2 class="sec-title reveal reveal-d1">CERTIFICATIONS</h2>
+    <div class="certs-grid">
+      <div class="cert-card reveal"><div class="cert-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C5F82A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><div class="cert-title">CyberAnarchy: CTF — Techflix Season 2</div><div class="cert-issuer">Dayananda Sagar University</div><span class="cert-date">April 2026</span></div>
+      <div class="cert-card reveal reveal-d1"><div class="cert-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C5F82A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div class="cert-title">TATA Crucible Campus Quiz 2025</div><div class="cert-issuer">Tata Group</div><span class="cert-date">2025</span></div>
+      <div class="cert-card reveal reveal-d2"><div class="cert-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C5F82A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div><div class="cert-title">Tata Imagination Challenge 2025</div><div class="cert-issuer">Tata Group</div><span class="cert-date">2025</span></div>
+      <div class="cert-card reveal"><div class="cert-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C5F82A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div><div class="cert-title">GenAI Powered Data Analytics Job Simulation</div><div class="cert-issuer">Tata Group via Forage</div><span class="cert-date">April 2026</span></div>
+      <div class="cert-card reveal reveal-d1"><div class="cert-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C5F82A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></div><div class="cert-title">Advanced Prompt Engineering with ChatGPT</div><div class="cert-issuer">upGrad Education Private Limited</div><span class="cert-date">February 2026</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="sec-inner">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="sec-eye">Get in touch</div>
+        <h2 class="contact-title">LET'S<br>BUILD<br><span class="accent">TOGETHER.</span></h2>
+        <p class="contact-intro">Open to internships, collaborations, and interesting AI projects. If you have something in mind, reach out.</p>
+        <div class="contact-items">
+          <a href="mailto:gdeekshith80@gmail.com" class="contact-item"><div class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5F82A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>gdeekshith80@gmail.com</a>
+          <a href="https://linkedin.com/in/deekshithg1206" target="_blank" class="contact-item"><div class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5F82A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></div>linkedin.com/in/deekshithg1206</a>
+          <a href="https://github.com/deekshith-8" target="_blank" class="contact-item"><div class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5F82A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>github.com/deekshith-8</a>
+        </div>
+      </div>
+      <div class="reveal reveal-d1">
+        <form class="contact-form" id="contactForm">
+          <div class="fg"><label>Your name</label><input type="text" placeholder="Jane Smith" required></div>
+          <div class="fg"><label>Email address</label><input type="email" placeholder="jane@company.com" required></div>
+          <div class="fg"><label>Message</label><textarea rows="4" placeholder="Tell me about your project or opportunity..." required></textarea></div>
+          <button type="submit" class="form-btn">Send Message →</button>
+          <div class="form-success" id="formSuccess">✓ Message sent! I'll get back to you soon.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bg">DEEKSHITH GOWDA</div>
+  <a href="#" class="footer-logo">DG<span>.</span></a>
+  <p>© 2026 Deekshith Gowda · Bengaluru, India</p>
+  <div class="footer-links">
+    <a href="https://github.com/deekshith-8" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/deekshithg1206" target="_blank">LinkedIn</a>
+    <a href="mailto:gdeekshith80@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cur.style.left=(mx-5)+'px';cur.style.top=(my-5)+'px';ring.style.left=(rx-19)+'px';ring.style.top=(ry-19)+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'))});
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>50),{passive:true});
+
+const links=document.querySelectorAll('.nav-links a');
+new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);if(a)a.classList.add('active')}})},{rootMargin:'-40% 0px -40% 0px'}).observe&&document.querySelectorAll('section[id]').forEach(s=>new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);if(a)a.classList.add('active')}})},{rootMargin:'-40% 0px -40% 0px'}).observe(s));
+
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+const eduCard=document.getElementById('eduCard');
+new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis')}})},{threshold:.2}).observe(eduCard);
+
+const barsEl=document.getElementById('bars');
+new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){
+  e.target.querySelectorAll('.sem-row').forEach(row=>{
+    const targets = [];
+    row.querySelectorAll('.sem-bar').forEach(b=>{
+      const w = b.style.width;
+      b.style.width = '0';
+      targets.push({el:b, w:w});
+    });
+    setTimeout(()=>{
+      row.classList.add('go');
+      targets.forEach(t=>{ t.el.style.width = t.w; });
+    }, parseInt(row.dataset.d||0));
+  });
+}})},{threshold:.2}).observe(barsEl);
+
+document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();const s=document.getElementById('formSuccess');s.style.display='block';e.target.reset();setTimeout(()=>s.style.display='none',5000)});
+</script>
+</body>
+</html>
