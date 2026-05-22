@@ -1,0 +1,4 @@
+cd C:\Users\user\Documents\Projects\portfolio
+git add .
+git commit -m "fix cert images - clean file paths"
+git push origin main
