@@ -851,6 +851,11 @@ function closeModal(){
   document.getElementById('certModal').classList.remove('open');
   document.body.style.overflow='';
 }
+
+Object.values(certImgs).forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
 </script>
 </body>
 </html>
