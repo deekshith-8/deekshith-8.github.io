@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<!-- hello -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deekshith Gowda — AI Developer</title>
+<meta name="description" content="Deekshith Gowda — AI Developer & CS student at Dayananda Sagar University building real AI products. RAG systems, LLMs, IoT and more.">
+<meta property="og:title" content="Deekshith Gowda — AI Developer">
+<meta property="og:description" content="CS student building real AI products — from RAG systems to IoT. Every project is live and public.">
+<meta property="og:url" content="https://deekshith-8.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://deekshith-8.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Deekshith Gowda — AI Developer">
+<meta name="twitter:description" content="CS student building real AI products — from RAG systems to IoT.">
+<meta name="twitter:image" content="https://deekshith-8.github.io/og-image.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
 :root{--black:#080808;--off:#101010;--panel:#141414;--lime:#C5F82A;--white:#F5F5F0;--muted:#666660;--border:rgba(255,255,255,0.06)}
@@ -843,14 +852,6 @@ function closeModal() {
 }
 
 
-
-modalClose.addEventListener('click', closeModal);
-document.getElementById('certModal').addEventListener('click', function(e){ if(e.target.id==='certModal') closeModal(); });
-document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
-function closeModal(){
-  document.getElementById('certModal').classList.remove('open');
-  document.body.style.overflow='';
-}
 
 Object.values(certImgs).forEach(src => {
   const img = new Image();
