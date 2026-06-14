@@ -152,6 +152,8 @@ section{padding:5rem 4rem;position:relative}
 .proj-big{font-family:'Bebas Neue',sans-serif;font-size:8rem;color:rgba(197,248,42,.04);letter-spacing:-.02em;user-select:none}
 .proj-live{position:absolute;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.1em;color:var(--lime);border:2px solid var(--lime);padding:.5rem 1.3rem;border-radius:2px;transition:all .25s}
 .proj-featured:hover .proj-live{box-shadow:0 0 30px rgba(197,248,42,.25)}
+.proj-featured.reversed .proj-featured-left{order:2}
+.proj-featured.reversed .proj-featured-right{order:1}
 .proj-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;color:rgba(255,255,255,.04);letter-spacing:-.02em;margin-bottom:-.5rem}
 .proj-badge{display:inline-flex;align-items:center;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .8rem;border-radius:100px;margin-bottom:1rem;width:fit-content}
 .badge-f{background:rgba(197,248,42,.1);border:1px solid rgba(197,248,42,.25);color:var(--lime)}
@@ -224,6 +226,7 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
   .edu-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
   .proj-featured{grid-template-columns:1fr}
   .proj-featured-right{display:none}
+  .proj-featured.reversed .proj-featured-left{order:1}
   .proj-row,.certs-grid{grid-template-columns:1fr}
   footer{flex-direction:column;gap:1rem;text-align:center;padding:1.5rem}
 }
@@ -579,9 +582,44 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
         <div class="proj-live">LIVE ↗</div>
       </div>
     </div>
+
+    <div class="proj-featured reversed reveal">
+      <div class="proj-featured-left">
+        <div class="proj-num">02</div>
+        <div class="proj-badge badge-i">Web App</div>
+        <div class="proj-title">CINEMOVIE</div>
+        <p class="proj-desc">A movie discovery web app for browsing, searching and exploring films with a clean, fast interface. Built with React and Vite for instant hot-reload development.</p>
+        <div class="proj-stack"><span class="ptag">React</span><span class="ptag">Vite</span><span class="ptag">JavaScript</span><span class="ptag">CSS</span></div>
+        <div class="proj-links">
+          <a href="https://github.com/deekshith-8/cinemovie" target="_blank" class="proj-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
+        </div>
+      </div>
+      <div class="proj-featured-right">
+        <div class="proj-big">UI</div>
+        <div class="proj-live">REACT ↗</div>
+      </div>
+    </div>
+
+    <div class="proj-featured reveal">
+      <div class="proj-featured-left">
+        <div class="proj-num">03</div>
+        <div class="proj-badge badge-f">★ Open Source</div>
+        <div class="proj-title">NESTLY</div>
+        <p class="proj-desc">An open-source portfolio generator for developers and CS students — pick a theme, fill in your details, preview live, and export a standalone HTML file. Includes an AI bio generator powered by Gemini.</p>
+        <div class="proj-stack"><span class="ptag">Next.js</span><span class="ptag">Tailwind CSS</span><span class="ptag">Gemini AI</span><span class="ptag">TypeScript</span><span class="ptag">Framer Motion</span></div>
+        <div class="proj-links">
+          <a href="https://github.com/deekshith-8/nestly" target="_blank" class="proj-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
+        </div>
+      </div>
+      <div class="proj-featured-right">
+        <div class="proj-big">NS</div>
+        <div class="proj-live">OPEN ↗</div>
+      </div>
+    </div>
+
     <div class="proj-row">
       <div class="proj-card reveal reveal-d1">
-        <div class="proj-num">02</div>
+        <div class="proj-num">04</div>
         <div class="proj-badge badge-l">Live</div>
         <div class="proj-title">AI RESUME ANALYZER</div>
         <p class="proj-desc">AI-powered resume screening that analyzes resumes against job descriptions. Generates match scores, missing skills, and improvement suggestions using LLaMA 3.3.</p>
@@ -592,7 +630,7 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
         </div>
       </div>
       <div class="proj-card reveal reveal-d2">
-        <div class="proj-num">03</div>
+        <div class="proj-num">05</div>
         <div class="proj-badge badge-i">IoT</div>
         <div class="proj-title">SMART BUS RFID SYSTEM</div>
         <p class="proj-desc">RFID-based smart bus tracking and access control. Integrated hardware with software logic for real-time passenger detection and automated bus entry management.</p>
@@ -603,7 +641,7 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
       </div>
 
       <div class="proj-card reveal reveal-d1">
-        <div class="proj-num">04</div>
+        <div class="proj-num">06</div>
         <div class="proj-badge badge-l">Live · 3 Stars</div>
         <div class="proj-title">SECURE SCORE</div>
         <p class="proj-desc">Web-based tool that evaluates digital security habits and generates a personalized security score with actionable recommendations. Features password strength analysis, risk-level classification and local score tracking.</p>
