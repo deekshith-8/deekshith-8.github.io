@@ -333,7 +333,7 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
   </ul>
   <div class="nav-actions">
     <a href="#contact" class="nav-hire">Hire me</a>
-	<a href="Deekshith_Gowda_CV.pdf" class="nav-cv" onclick="return openResumeModal(event)">Resume ↗</a>  
+	<a href="Deekshith_Gowda_CV.pdf?v=20260901" class="nav-cv" onclick="return openResumeModal(event)">Resume ↗</a>  
 	</div>
 </nav>
 
@@ -350,7 +350,7 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
     <div class="hero-btns">
       <a href="#projects" class="btn-lime">View Projects</a>
       <a href="#contact" class="btn-ghost">Get in touch →</a>
-      <a href="Deekshith_Gowda_CV.pdf" class="btn-ghost" onclick="return openResumeModal(event)">View CV ↗</a>
+      <a href="Deekshith_Gowda_CV.pdf?v=20260901" class="btn-ghost" onclick="return openResumeModal(event)">View CV ↗</a>
     </div>
     <div class="hero-stats">
       <div class="hstat"><div class="hstat-num">5+</div><div class="hstat-lbl">Live Projects</div></div>
@@ -1140,7 +1140,7 @@ Object.values(certImgs).forEach(src => {
 <script>
 function openResumeModal(e){
   if(e) e.preventDefault();
-  document.getElementById('resumeModalFrame').src='Deekshith_Gowda_CV.pdf';
+  document.getElementById('resumeModalFrame').src='Deekshith_Gowda_CV.pdf?v=20260901';
   document.getElementById('resumeModalOverlay').classList.add('active');
   document.body.style.overflow='hidden';
   return false;
