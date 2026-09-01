@@ -84,6 +84,42 @@ section{padding:5rem 4rem;position:relative}
 .sec-eye::before{content:'';width:20px;height:1px;background:var(--lime)}
 .sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,4vw,4.5rem);line-height:.92;letter-spacing:.03em;margin-bottom:2rem}
 .sec-title .accent{color:var(--lime)}
+.experience-section{background:linear-gradient(to bottom,var(--black),var(--off));overflow:hidden}
+.exp-card{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:2.5rem;transition:all .35s;overflow:hidden}
+.exp-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--lime);transform:scaleY(0);transform-origin:bottom;transition:transform .55s ease}
+.exp-card:hover{border-color:rgba(197,248,42,.22);transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.exp-card:hover::before,.exp-card.vis::before{transform:scaleY(1)}
+.exp-top{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.exp-company-wrap{display:flex;align-items:center;gap:1.2rem}
+.exp-mark{width:54px;height:54px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(197,248,42,.07);border:1px solid rgba(197,248,42,.16);border-radius:4px;font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.04em;color:var(--lime);transition:all .3s}
+.exp-card:hover .exp-mark{background:var(--lime);color:var(--black);transform:rotate(-3deg) scale(1.04)}
+.exp-company{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.04em;line-height:1;color:var(--white)}
+.exp-role{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);font-weight:700;margin-top:.35rem}
+.exp-meta{text-align:right;flex-shrink:0}
+.exp-date{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.06em;color:var(--white)}
+.exp-location{font-size:.68rem;color:var(--muted);margin-top:.25rem}
+.exp-current{display:inline-flex;align-items:center;gap:.4rem;margin-top:.65rem;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);background:rgba(197,248,42,.07);border:1px solid rgba(197,248,42,.15);padding:.28rem .7rem;border-radius:100px}
+.exp-current::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--lime);animation:blink 2s infinite}
+.exp-body{display:grid;grid-template-columns:1fr 280px;gap:2.5rem;padding-top:1.8rem}
+.exp-points{display:flex;flex-direction:column;gap:.9rem}
+.exp-point{display:grid;grid-template-columns:18px 1fr;gap:.7rem;align-items:start;color:rgba(245,245,240,.65);font-size:.82rem;line-height:1.75}
+.exp-point::before{content:'→';color:var(--lime);font-weight:700;margin-top:.02rem}
+.exp-side{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:3px;padding:1.2rem}
+.exp-side-label{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--lime);margin-bottom:.8rem}
+.exp-tags{display:flex;flex-wrap:wrap;gap:.45rem}
+.exp-tag{font-size:.63rem;color:rgba(245,245,240,.55);background:rgba(255,255,255,.025);border:1px solid var(--border);padding:.3rem .65rem;border-radius:2px;transition:all .2s}
+.exp-tag:hover{color:var(--lime);border-color:rgba(197,248,42,.25);transform:translateY(-2px)}
+.exp-note{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.65rem;color:var(--muted);line-height:1.6}
+@media(max-width:900px){
+  .exp-top{flex-direction:column;gap:1.2rem}
+  .exp-meta{text-align:left}
+  .exp-body{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .exp-card{padding:1.5rem}
+  .exp-company{font-size:1.5rem}
+  .exp-mark{width:46px;height:46px;font-size:1.15rem}
+}
 .edu-section{background:linear-gradient(to bottom,var(--black),var(--off))}
 .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}
 .edu-card{position:relative;display:flex;flex-direction:column;gap:1.5rem;background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:2.2rem;transition:all .35s}
@@ -288,6 +324,7 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
 <nav id="nav">
   <a href="#" class="nav-logo">DG<span>.</span></a>
   <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -354,6 +391,61 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
     <span class="strip-item">C · Java · JavaScript <span class="strip-dot">·</span></span>
   </div>
 </div>
+
+<section id="experience" class="experience-section">
+  <div class="sec-inner">
+    <div class="sec-eye reveal">Experience</div>
+    <div class="projects-header reveal reveal-d1">
+      <div>
+        <h2 class="sec-title" style="margin-bottom:0">INDUSTRY <span class="accent">EXPERIENCE.</span></h2>
+      </div>
+    </div>
+
+    <div class="exp-card reveal reveal-d2">
+      <div class="exp-top">
+        <div class="exp-company-wrap">
+          <div class="exp-mark">B</div>
+          <div>
+            <div class="exp-company">Bosch Limited</div>
+            <div class="exp-role">Software Developer Intern</div>
+          </div>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-date">9 AUG 2026 — PRESENT</div>
+          <div class="exp-location">Bengaluru, India</div>
+          <div class="exp-current">Currently working</div>
+        </div>
+      </div>
+
+      <div class="exp-body">
+        <div class="exp-points">
+          <div class="exp-point">Developing internal software applications using React, JavaScript, and Vite, creating reusable UI components and workflows used by Bosch employees.</div>
+          <div class="exp-point">Developing and testing RESTful APIs using Java and Spring Boot, implementing layered architecture with controllers, services, and repositories.</div>
+          <div class="exp-point">Working with MySQL databases and implementing application data access using Spring Data JPA, SQL, and Maven-based project configuration.</div>
+          <div class="exp-point">Integrating frontend and backend components end-to-end, debugging API integration, data-flow, and application issues across the application stack.</div>
+        </div>
+
+        <div class="exp-side">
+          <div class="exp-side-label">Tech &amp; Workflow</div>
+          <div class="exp-tags">
+            <span class="exp-tag">React</span>
+            <span class="exp-tag">JavaScript</span>
+            <span class="exp-tag">Vite</span>
+            <span class="exp-tag">Java</span>
+            <span class="exp-tag">Spring Boot</span>
+            <span class="exp-tag">Spring Data JPA</span>
+            <span class="exp-tag">MySQL</span>
+            <span class="exp-tag">SQL</span>
+            <span class="exp-tag">Maven</span>
+            <span class="exp-tag">REST APIs</span>
+            <span class="exp-tag">GitHub</span>
+          </div>
+          <div class="exp-note">Frontend + backend development · API integration · database access · debugging</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="education" class="edu-section">
   <div class="sec-inner">
