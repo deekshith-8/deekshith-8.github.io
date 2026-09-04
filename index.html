@@ -130,22 +130,42 @@ nav.scrolled{background:rgba(8,8,8,.97);border-bottom-color:var(--border);paddin
 .strip-dot{color:var(--lime);font-size:1.1rem;line-height:0}
 .strip:hover .strip-track{animation-play-state:paused}
 @keyframes marqueeLTR{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}to{transform:translate3d(0,0,0)}}
-section{padding:5rem 4rem;position:relative}
+section{padding:6.25rem 4rem;position:relative}
 section:not(.hero){content-visibility:auto;contain-intrinsic-size:0 760px}
 .sec-inner{max-width:1100px;margin:0 auto}
 .sec-eye{display:flex;align-items:center;gap:.75rem;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:1.2rem}
 .sec-eye::before{content:'';width:20px;height:1px;background:var(--lime)}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,4vw,4.5rem);line-height:.92;letter-spacing:.03em;margin-bottom:2rem}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,4vw,4.5rem);line-height:.92;letter-spacing:.03em;margin-bottom:2.6rem}
 .sec-title .accent{color:var(--lime)}
-.experience-section{background:linear-gradient(to bottom,var(--black),var(--off));overflow:hidden}
+.experience-section{background:linear-gradient(to bottom,var(--black),var(--off));overflow:hidden;padding-top:5.75rem;padding-bottom:7rem}
 .exp-card{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:2.5rem;transition:all .35s;overflow:hidden}
 .exp-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--lime);transform:scaleY(0);transform-origin:bottom;transition:transform .55s ease}
 .exp-card:hover{border-color:rgba(197,248,42,.22);transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.5)}
 .exp-card:hover::before,.exp-card.vis::before{transform:scaleY(1)}
 .exp-top{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
-.exp-company-wrap{display:flex;align-items:center;gap:1.2rem}
-.exp-mark{width:54px;height:54px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(197,248,42,.07);border:1px solid rgba(197,248,42,.16);border-radius:4px;font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.04em;color:var(--lime);transition:all .3s}
-.exp-card:hover .exp-mark{background:var(--lime);color:var(--black);transform:rotate(-3deg) scale(1.04)}
+.exp-company-wrap{display:flex;align-items:center;gap:1.35rem;min-width:0}
+/* Bosch experience mark */
+.exp-mark{
+  width:72px;
+  height:72px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#151515;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:5px;
+  color:#f5f5f0;
+  transition:background-color .25s cubic-bezier(.22,.61,.36,1),
+             border-color .25s cubic-bezier(.22,.61,.36,1),
+             transform .25s cubic-bezier(.22,.61,.36,1);
+}
+.exp-mark svg{width:58px;height:58px;display:block}
+.exp-card:hover .exp-mark{
+  background:#181818;
+  border-color:rgba(197,248,42,.28);
+  transform:translateY(-2px);
+}
 .exp-company{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.04em;line-height:1;color:var(--white)}
 .exp-role{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);font-weight:700;margin-top:.35rem}
 .exp-meta{text-align:right;flex-shrink:0}
@@ -169,11 +189,14 @@ section:not(.hero){content-visibility:auto;contain-intrinsic-size:0 760px}
   .exp-body{grid-template-columns:1fr}
 }
 @media(max-width:640px){
+  .experience-section{padding-top:4.5rem;padding-bottom:5.5rem}
+  .edu-section{padding-top:5rem;padding-bottom:5.5rem}
   .exp-card{padding:1.5rem}
   .exp-company{font-size:1.5rem}
-  .exp-mark{width:46px;height:46px;font-size:1.15rem}
+  .exp-mark{width:56px;height:56px}
+  .exp-mark svg{width:46px;height:46px}
 }
-.edu-section{background:linear-gradient(to bottom,var(--black),var(--off))}
+.edu-section{background:linear-gradient(to bottom,var(--black),var(--off));padding-top:6.5rem;padding-bottom:7rem}
 .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}
 .edu-card{position:relative;display:flex;flex-direction:column;gap:1.5rem;background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:2.2rem;transition:all .35s}
 .edu-card:hover{border-color:rgba(197,248,42,.2);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
@@ -304,7 +327,7 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
 @media(max-width:900px){
   nav{padding:1rem 1.5rem}
   .nav-links{display:none}
-  section{padding:4rem 1.5rem}
+  section{padding:4.75rem 1.5rem}
   .hero{grid-template-columns:1fr;padding:5rem 1.5rem 3rem;min-height:auto}
   .hero-right{display:none}
   .hero-name{font-size:clamp(4rem,15vw,6rem)}
@@ -477,7 +500,13 @@ a,button{touch-action:manipulation}
     <div class="exp-card reveal reveal-d2">
       <div class="exp-top">
         <div class="exp-company-wrap">
-          <div class="exp-mark">B</div>
+          <div class="exp-mark" aria-label="Bosch logo" title="Bosch Limited">
+  <svg viewBox="0 0 72 72" role="img" aria-hidden="true">
+    <circle cx="36" cy="36" r="25" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M25 21v30M47 21v30M25 36h22M30 21v15M42 36v15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <path d="M30 21h12M30 51h12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+  </svg>
+</div>
           <div>
             <div class="exp-company">Bosch Limited</div>
             <div class="exp-role">Software Developer Intern</div>
