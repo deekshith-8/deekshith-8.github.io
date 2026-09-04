@@ -371,7 +371,7 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
   .cgpa-row{opacity:.7}
 
   /* MODAL */
-  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s cubic-bezier(.25,.46,.45,.94);backdrop-filter:blur(12px)}
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s cubic-bezier(.25,.46,.45,.94)}
   .modal-overlay.open{opacity:1;visibility:visible}
   .modal{background:#0e0e0e;border:1px solid rgba(197,248,42,.2);border-radius:8px;padding:1.5rem;max-width:700px;width:92%;position:relative;transform:translateY(24px) scale(0.97);transition:all .35s cubic-bezier(.25,.46,.45,.94);box-shadow:0 0 80px rgba(197,248,42,.07),0 40px 80px rgba(0,0,0,.9)}
   .modal-overlay.open .modal{transform:translateY(0) scale(1)}
@@ -449,6 +449,51 @@ a,button{touch-action:manipulation}
   .exp-company-wrap::after{height:42px}
   .exp-company{font-size:1.35rem}
   .exp-role{font-size:.62rem}
+}
+
+
+
+
+/* ===== Smooth performance pass ===== */
+html{scroll-behavior:smooth}
+.reveal{
+  transition:
+    opacity .55s cubic-bezier(.22,.61,.36,1),
+    transform .55s cubic-bezier(.22,.61,.36,1);
+}
+.exp-card,.edu-card,.proj-card,.proj-featured,.cert-card{
+  transition:
+    transform .28s cubic-bezier(.22,.61,.36,1),
+    border-color .22s ease,
+    box-shadow .28s ease;
+}
+.btn-lime,.btn-ghost,.nav-hire,.nav-cv,.form-btn,
+.proj-link,.contact-item,.about-email,.footer-links a,
+.exp-tag,.itag,.stag{
+  transition:
+    transform .2s cubic-bezier(.22,.61,.36,1),
+    color .2s ease,
+    background-color .2s ease,
+    border-color .2s ease;
+}
+.strip-track{
+  transform:translate3d(-50%,0,0);
+  animation:marqueeLTR 30s linear infinite;
+  will-change:transform;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+.strip:hover .strip-track{animation-play-state:paused}
+.modal-overlay{backdrop-filter:none}
+@media (hover:hover){
+  .exp-card:hover,.edu-card:hover,.proj-card:hover,.proj-featured:hover,.cert-card:hover{
+    will-change:transform;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .strip-track{animation:none!important;transform:none!important}
+  .reveal{transition:none!important}
 }
 
 </style>
@@ -587,7 +632,12 @@ a,button{touch-action:manipulation}
 
 <section id="education" class="edu-section">
   <div class="sec-inner">
-    <div class="sec-eye reveal">Background</div>
+  <div class="sec-eye reveal">Education</div>
+    <div class="projects-header reveal reveal-d1">
+      <div>
+        <h2 class="sec-title" style="margin-bottom:0">ACADEMIC <span class="accent">BACKGROUND.</span></h2>
+      </div>
+    </div>
     <div class="edu-grid">
       <div>
         <div class="edu-card reveal reveal-d1" id="eduCard">
@@ -1188,7 +1238,7 @@ function closeModal() {
 
   // Glow that follows cursor
   var glow = document.createElement('div');
-  glow.style.cssText='position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(197,248,42,0.15) 0%,transparent 65%);pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:opacity .4s;z-index:2;';
+  glow.style.cssText='position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(197,248,42,0.11) 0%,transparent 65%);pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:opacity .4s;z-index:2;';
   wrap.appendChild(glow);
 
   // Shimmer line that sweeps on hover
@@ -1199,7 +1249,7 @@ function closeModal() {
   wrap.addEventListener('mouseenter',function(){
     isHovering=true;
     bm.style.animation='none';bm.style.transition='filter .3s';
-    bm.style.filter='drop-shadow(0 0 40px rgba(197,248,42,0.25))';
+    bm.style.filter='drop-shadow(0 0 28px rgba(197,248,42,0.18))';
     glow.style.opacity='1';
     shimmer.style.opacity='1';
     cancelAnimationFrame(raf);
@@ -1210,8 +1260,7 @@ function closeModal() {
     var r=wrap.getBoundingClientRect();
     mx=(e.clientX-r.left)/r.width-0.5;
     my=(e.clientY-r.top)/r.height-0.5;
-    glow.style.left=(e.clientX-r.left)+'px';
-    glow.style.top=(e.clientY-r.top)+'px';
+    glow.style.transform='translate3d('+(e.clientX-r.left)+'px,'+(e.clientY-r.top)+'px,0) translate(-50%,-50%)';
   });
 
   wrap.addEventListener('mouseleave',function(){
