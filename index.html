@@ -73,6 +73,55 @@ nav.scrolled{background:rgba(8,8,8,.97);border-bottom-color:var(--border);paddin
 .code-filename{margin-left:.5rem;font-family:monospace;font-size:.68rem;color:#444}
 .code-body{padding:1.4rem 1.5rem;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.95;color:rgba(245,245,240,.72);white-space:pre}
 .ck{color:#c792ea}.cs{color:#c3e88d}.cn{color:#f78c6c}.cc{color:rgba(197,248,42,.45)}.cf{color:#82aaff}
+
+.market-ticker{
+  width:100%;
+  overflow:hidden;
+  border-bottom:1px solid var(--border);
+  background:#0b0b0b;
+  padding:.58rem 0;
+  white-space:nowrap;
+}
+.market-track{
+  display:flex;
+  width:max-content;
+  animation:marketTicker 32s linear infinite;
+  will-change:transform;
+  transform:translate3d(-50%,0,0);
+}
+.market-group{
+  display:flex;
+  align-items:center;
+  flex:0 0 auto;
+}
+.market-item{
+  display:inline-flex;
+  align-items:baseline;
+  gap:.42rem;
+  padding:0 2.25rem;
+  font-size:.62rem;
+  letter-spacing:.045em;
+  font-weight:600;
+  color:#85857f;
+  flex:0 0 auto;
+}
+.market-name{color:#b5b5af}
+.market-value{color:#666660;font-variant-numeric:tabular-nums}
+.market-change{font-variant-numeric:tabular-nums;font-weight:700}
+.market-change.up{color:#20c997}
+.market-change.down{color:#ff635b}
+.market-arrow{font-size:.68rem}
+@keyframes marketTicker{
+  from{transform:translate3d(-50%,0,0)}
+  to{transform:translate3d(0,0,0)}
+}
+@media(max-width:640px){
+  .market-item{padding:0 1.35rem;font-size:.58rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .market-track{animation:none;transform:none}
+}
+
 .strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--off);overflow:hidden;padding:.75rem 0;mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%)}
 .strip-track{direction:ltr;display:flex;width:max-content;white-space:nowrap;will-change:transform;transform:translate3d(-50%,0,0);animation:marquee 18s linear infinite}
 .strip-group{display:flex;flex:0 0 auto;align-items:center}
@@ -323,6 +372,134 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
   html{scroll-behavior:auto}
   .strip-track{animation-duration:18s!important;animation-iteration-count:infinite!important;animation-timing-function:linear!important;animation-play-state:running!important}
 }
+
+/* ===== Optimized motion & interaction layer ===== */
+:root{
+  --ease-out:cubic-bezier(.22,.61,.36,1);
+  --ease-spring:cubic-bezier(.2,.8,.2,1);
+}
+
+/* Keep animations compositor-only */
+.market-track,.strip-track{
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  perspective:1000px;
+}
+
+/* Smooth market ticker */
+.market-ticker{
+  background:linear-gradient(90deg,#0a0a0a,#0d0d0d,#0a0a0a);
+}
+.market-track{
+  animation-duration:36s;
+}
+.market-item{
+  transition:color .22s var(--ease-out), transform .22s var(--ease-out), opacity .22s var(--ease-out);
+  opacity:.78;
+}
+.market-item:hover{
+  opacity:1;
+  transform:translateY(-1px);
+}
+.market-item:hover .market-name,
+.market-item:hover .market-value{
+  color:var(--white);
+}
+.market-item:hover .market-change{
+  filter:drop-shadow(0 0 6px currentColor);
+}
+
+/* Pause only when user intentionally hovers */
+.market-ticker:hover .market-track{
+  animation-play-state:paused;
+}
+
+/* Skills marquee */
+.strip-track{
+  animation-duration:30s;
+}
+.strip-item{
+  transition:color .2s var(--ease-out), transform .2s var(--ease-out), text-shadow .2s var(--ease-out);
+}
+.strip-item:hover{
+  color:var(--white);
+  transform:translateY(-1px);
+  text-shadow:0 0 10px rgba(197,248,42,.28);
+}
+.strip:hover .strip-track{
+  animation-play-state:paused;
+}
+
+/* Cards: only transform/opacity/border for cheaper rendering */
+.exp-card,.edu-card,.proj-card,.proj-featured,.cert-card{
+  transition:
+    transform .28s var(--ease-out),
+    border-color .28s var(--ease-out),
+    box-shadow .28s var(--ease-out);
+  will-change:auto;
+}
+.exp-card:hover,.edu-card:hover,.proj-card:hover,.proj-featured:hover,.cert-card:hover{
+  will-change:transform;
+}
+
+/* Buttons */
+.btn-lime,.btn-ghost,.nav-hire,.nav-cv,.form-btn{
+  transition:
+    transform .2s var(--ease-out),
+    background-color .2s var(--ease-out),
+    border-color .2s var(--ease-out),
+    color .2s var(--ease-out),
+    box-shadow .2s var(--ease-out);
+}
+.btn-lime:hover,.btn-ghost:hover,.nav-hire:hover,.nav-cv:hover,.form-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* Links */
+.proj-link,.contact-item,.about-email,.footer-links a{
+  transition:
+    transform .2s var(--ease-out),
+    color .2s var(--ease-out),
+    border-color .2s var(--ease-out),
+    background-color .2s var(--ease-out);
+}
+
+/* Bitmoji hover without expensive continuous repaint */
+.bitmoji-img{
+  transition:transform .35s var(--ease-spring), filter .35s var(--ease-out);
+}
+.bitmoji-img:hover{
+  transform:translate3d(0,-4px,0) scale(1.015);
+}
+
+/* Reduce work on touch devices */
+@media (hover:none){
+  .market-ticker:hover .market-track,
+  .strip:hover .strip-track{
+    animation-play-state:running;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion:reduce){
+  .market-track,.strip-track{
+    animation:none !important;
+    transform:none !important;
+  }
+  *{
+    scroll-behavior:auto !important;
+  }
+}
+
+
+/* Final rendering optimizations */
+img{content-visibility:auto}
+a,button{touch-action:manipulation}
+@media(max-width:900px){
+  .market-track{animation-duration:30s}
+  .strip-track{animation-duration:26s}
+}
+
 </style>
 </head>
 <body>
@@ -373,6 +550,28 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
     </div>
   </div>
 </section>
+
+
+<div class="market-ticker" aria-label="Market snapshot">
+  <div class="market-track">
+    <div class="market-group">
+      <span class="market-item"><span class="market-name">NIFTY 50</span><span class="market-value">24,718.60</span><span class="market-change up"><span class="market-arrow">↑</span> 0.42%</span></span>
+      <span class="market-item"><span class="market-name">NIFTY MIDCAP 100</span><span class="market-value">57,231.40</span><span class="market-change up"><span class="market-arrow">↑</span> 0.18%</span></span>
+      <span class="market-item"><span class="market-name">INDIA VIX</span><span class="market-value">11.24</span><span class="market-change down"><span class="market-arrow">↓</span> 2.15%</span></span>
+      <span class="market-item"><span class="market-name">SENSEX</span><span class="market-value">80,123.40</span><span class="market-change up"><span class="market-arrow">↑</span> 0.31%</span></span>
+      <span class="market-item"><span class="market-name">NIFTY BANK</span><span class="market-value">54,386.25</span><span class="market-change up"><span class="market-arrow">↑</span> 0.27%</span></span>
+      <span class="market-item"><span class="market-name">NIFTY IT</span><span class="market-value">41,892.70</span><span class="market-change down"><span class="market-arrow">↓</span> 0.36%</span></span>
+    </div>
+    <div class="market-group" aria-hidden="true">
+      <span class="market-item"><span class="market-name">NIFTY 50</span><span class="market-value">24,718.60</span><span class="market-change up"><span class="market-arrow">↑</span> 0.42%</span></span>
+      <span class="market-item"><span class="market-name">NIFTY MIDCAP 100</span><span class="market-value">57,231.40</span><span class="market-change up"><span class="market-arrow">↑</span> 0.18%</span></span>
+      <span class="market-item"><span class="market-name">INDIA VIX</span><span class="market-value">11.24</span><span class="market-change down"><span class="market-arrow">↓</span> 2.15%</span></span>
+      <span class="market-item"><span class="market-name">SENSEX</span><span class="market-value">80,123.40</span><span class="market-change up"><span class="market-arrow">↑</span> 0.31%</span></span>
+      <span class="market-item"><span class="market-name">NIFTY BANK</span><span class="market-value">54,386.25</span><span class="market-change up"><span class="market-arrow">↑</span> 0.27%</span></span>
+      <span class="market-item"><span class="market-name">NIFTY IT</span><span class="market-value">41,892.70</span><span class="market-change down"><span class="market-arrow">↓</span> 0.36%</span></span>
+    </div>
+  </div>
+</div>
 
 <div class="strip" aria-label="Technical focus areas">
   <div class="strip-track">
