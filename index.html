@@ -74,11 +74,11 @@ nav.scrolled{background:rgba(8,8,8,.97);border-bottom-color:var(--border);paddin
 .code-body{padding:1.4rem 1.5rem;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.95;color:rgba(245,245,240,.72);white-space:pre}
 .ck{color:#c792ea}.cs{color:#c3e88d}.cn{color:#f78c6c}.cc{color:rgba(197,248,42,.45)}.cf{color:#82aaff}
 .strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--off);overflow:hidden;padding:.75rem 0;mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%)}
-.strip-track{display:flex;width:max-content;white-space:nowrap;will-change:transform;transform:translate3d(0,0,0);animation:marquee 28s linear infinite}
+.strip-track{direction:ltr;display:flex;width:max-content;white-space:nowrap;will-change:transform;transform:translate3d(-50%,0,0);animation:marquee 18s linear infinite}
 .strip-group{display:flex;flex:0 0 auto;align-items:center}
 .strip-item{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.14em;color:#444;padding:0 2rem;display:inline-flex;align-items:center;gap:2rem;flex:0 0 auto}
 .strip-dot{color:var(--lime);font-size:1.1rem;line-height:0}
-@keyframes marquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes marquee{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}
 section{padding:5rem 4rem;position:relative}
 section:not(.hero){content-visibility:auto;contain-intrinsic-size:0 760px}
 .sec-inner{max-width:1100px;margin:0 auto}
@@ -321,8 +321,7 @@ footer p{color:var(--muted);font-size:.72rem;position:relative;z-index:1}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
-  .strip-track{animation-play-state:paused}
+  .strip-track{animation-duration:18s!important;animation-iteration-count:infinite!important;animation-timing-function:linear!important;animation-play-state:running!important}
 }
 </style>
 </head>
