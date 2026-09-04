@@ -123,13 +123,13 @@ nav.scrolled{background:rgba(8,8,8,.97);border-bottom-color:var(--border);paddin
 }
 
 .strip{position:relative;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--off);overflow:hidden;padding:.75rem 0;mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%)}
-.strip-track{display:flex;width:max-content;white-space:nowrap;transform:translate3d(-50%,0,0);animation:marqueeLTR 28s linear infinite;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.strip-track{display:flex;width:max-content;white-space:nowrap;transform:translate3d(-50%,0,0);animation:marqueeLTR 30s linear infinite;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .strip-group{display:flex;flex:0 0 auto;align-items:center}
 .strip-item{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.14em;color:#444;padding:0 2rem;display:inline-flex;align-items:center;gap:2rem;flex:0 0 auto;transition:color .2s ease,transform .2s ease,text-shadow .2s ease}
 .strip-item:hover{color:var(--white);transform:translateY(-1px);text-shadow:0 0 10px rgba(197,248,42,.22)}
 .strip-dot{color:var(--lime);font-size:1.1rem;line-height:0}
 .strip:hover .strip-track{animation-play-state:paused}
-@keyframes marqueeLTR{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}to{transform:translate3d(0,0,0)}}
+@keyframes marqueeLTR{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}
 section{padding:6.5rem 4rem;position:relative}
 section:not(.hero){content-visibility:auto;contain-intrinsic-size:0 760px}
 .sec-inner{max-width:1100px;margin:0 auto}
@@ -494,6 +494,90 @@ html{scroll-behavior:smooth}
   html{scroll-behavior:auto}
   .strip-track{animation:none!important;transform:none!important}
   .reveal{transition:none!important}
+}
+
+
+/* ===== Clean final spacing — single source of truth ===== */
+section{
+  padding:5.25rem 4rem;
+  position:relative;
+}
+section:not(.hero){
+  content-visibility:auto;
+  contain-intrinsic-size:0 760px;
+}
+
+.sec-eye{
+  margin-bottom:1rem;
+}
+.sec-title{
+  margin-bottom:2.5rem;
+}
+
+/* Keep the major sections visually consistent */
+.experience-section,
+.edu-section,
+.about-section,
+.projects-section,
+.certs-section{
+  padding-top:5.25rem;
+  padding-bottom:5.25rem;
+}
+
+.projects-section .projects-header{
+  margin-bottom:2.5rem;
+}
+
+.certs-section .sec-eye{
+  margin-bottom:1rem;
+}
+
+.certs-section .sec-title{
+  margin-bottom:2.5rem;
+}
+
+.contact-section{
+  padding-top:5.25rem;
+  padding-bottom:5.5rem;
+}
+
+/* Responsive — scale the same rhythm down rather than creating large gaps */
+@media(max-width:900px){
+  section{
+    padding-left:2.25rem;
+    padding-right:2.25rem;
+  }
+  .experience-section,
+  .edu-section,
+  .about-section,
+  .projects-section,
+  .certs-section,
+  .contact-section{
+    padding-top:4.25rem;
+    padding-bottom:4.25rem;
+  }
+}
+
+@media(max-width:520px){
+  section{
+    padding-left:1.15rem;
+    padding-right:1.15rem;
+  }
+  .experience-section,
+  .edu-section,
+  .about-section,
+  .projects-section,
+  .certs-section,
+  .contact-section{
+    padding-top:3.5rem;
+    padding-bottom:3.5rem;
+  }
+  .sec-eye{
+    margin-bottom:.85rem;
+  }
+  .sec-title{
+    margin-bottom:2rem;
+  }
 }
 
 </style>
